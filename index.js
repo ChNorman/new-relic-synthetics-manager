@@ -1,12 +1,14 @@
 
 
 
-var $driver = require('selenium-webdriver');
+const $driver = require('selenium-webdriver');
+const $http = require('request');
 
-var driver = new $driver.Builder().withCapabilities($driver.Capabilities.chrome()).build();
-var $browser = driver;
+var driver = $driver;
+var $browser = new driver.Builder().withCapabilities($driver.Capabilities.chrome()).build();
 
 $browser.waitForElement = function (locatorOrElement, timeoutMsOpt) {
+    
     return $browser.wait($driver.until.elementLocated(locatorOrElement), timeoutMsOpt || 5000, 'Timed-out waiting for element to be located using: ' + locatorOrElement);
 };
 
@@ -22,8 +24,10 @@ $browser.waitForAndFindElement = function (locatorOrElement, timeoutMsOpt) {
 
 global.$browser = $browser;
 global.$driver = $driver;
+global.$http = $http;
 
 module.exports = {
     driver: $driver,
-    browser: $browser
+    browser: $browser,
+    http: $http
 };

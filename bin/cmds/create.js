@@ -78,8 +78,8 @@ exports.handler = function (argv) {
     dependencies(config).createMonitorOrchestrator.createNewMonitor(
         argv.name, 
         argv.locations,
-        argv.type,
-        argv.frequency,
+        argv.type=simple,
+        argv.frequency=15,
         argv.filename,
         null,
         argv.uri,
